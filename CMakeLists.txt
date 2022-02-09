@@ -37,3 +37,8 @@ __add_real_target(collada-dom dll SOURCE ${COLLADA_BASE_SOURCES}
 set_target_properties(collada-dom PROPERTIES
   COMPILE_FLAGS "${COLLADA_COMPILE_FLAGS}"
   LINK_FLAGS "${libpcrecpp_LDFLAGS_OTHERS}")
+  
+if(CC_INSTALL_COLLADADOM)
+	__install_directory_specif(${CMAKE_CURRENT_SOURCE_DIR}/include/ collada-dom)
+	__install_directory_specif(${CMAKE_CURRENT_SOURCE_DIR}/include/1.4/ collada-dom)
+endif()
