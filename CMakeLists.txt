@@ -32,6 +32,7 @@ __add_real_target(collada-dom dll SOURCE ${COLLADA_BASE_SOURCES}
 								  INC ${INCS}
 								  LIB ${LIBS}
 								  DEF ${DEFS}
+								  INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/include/ ${CMAKE_CURRENT_SOURCE_DIR}/include/1.4/
 								  )
 								  
 set_target_properties(collada-dom PROPERTIES
