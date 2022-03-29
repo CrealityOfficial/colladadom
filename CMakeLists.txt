@@ -118,7 +118,7 @@ endif()
 
 set(INCS ${CMAKE_CURRENT_SOURCE_DIR}/include)
 set(LIBS ${COLLADA_LIBS})
-set(DEFS DOM_INCLUDE_LIBXML PCRE_STATIC)
+set(DEFS DOM_INCLUDE_LIBXML PCRE_STATIC Z_PREFIX)
 __add_real_target(collada-dom dll SOURCE ${COLLADA_BASE_SOURCES}
 								  INC ${INCS}
 								  LIB ${LIBS}
