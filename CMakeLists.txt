@@ -94,8 +94,8 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 __assert_target(minizip)
 __assert_target(LibXml2)
 
-set(COLLADA_LIBS zlib minizip boost_file_system boost_system pcrecpp_local LibXml2)
-set(COLLADA_CORE_LIBS boost_file_system boost_system)
+set(COLLADA_LIBS zlib minizip boost_file_system pcrecpp_local LibXml2)
+set(COLLADA_CORE_LIBS boost_file_system)
 
 file(GLOB dae_files ${CMAKE_CURRENT_SOURCE_DIR}/src/dae/*.cpp)
 file(GLOB libxmlplugin_files ${CMAKE_CURRENT_SOURCE_DIR}/src/modules/LIBXMLPlugin/*.cpp)
@@ -106,6 +106,8 @@ set(COLLADA_BASE_SOURCES ${dae_files} ${libxmlplugin_files} ${stddatabase_files}
 set(COLLADA_COMPILE_FLAGS "${EXTRA_COMPILE_FLAGS}")
 # create dynamic libraries
 set(COLLADA_COMPILE_FLAGS "${COLLADA_COMPILE_FLAGS} -DDOM_DYNAMIC -DDOM_EXPORT")
+
+add_definitions(-DBOOST_ALL_NO_LIB)
 
 if( OPT_COLLADA15 )
   add_subdirectory(src/1.5)
@@ -118,7 +120,7 @@ endif()
 
 set(INCS ${CMAKE_CURRENT_SOURCE_DIR}/include)
 set(LIBS ${COLLADA_LIBS})
-set(DEFS DOM_INCLUDE_LIBXML PCRE_STATIC Z_PREFIX)
+set(DEFS DOM_INCLUDE_LIBXML PCRE_STATIC Z_PREFIX LIBXML_STATIC)
 __add_real_target(collada-dom dll SOURCE ${COLLADA_BASE_SOURCES}
 								  INC ${INCS}
 								  LIB ${LIBS}
