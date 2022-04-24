@@ -104,8 +104,13 @@ file(GLOB stderrplugin_files ${CMAKE_CURRENT_SOURCE_DIR}/src/modules/stdErrPlugi
 
 set(COLLADA_BASE_SOURCES ${dae_files} ${libxmlplugin_files} ${stddatabase_files} ${stderrplugin_files})
 set(COLLADA_COMPILE_FLAGS "${EXTRA_COMPILE_FLAGS}")
-# create dynamic libraries
-set(COLLADA_COMPILE_FLAGS "${COLLADA_COMPILE_FLAGS} -DDOM_DYNAMIC -DDOM_EXPORT")
+
+if(CC_GLOBAL_FORCE_STATIC)
+	set(COLLADA_COMPILE_FLAGS "${COLLADA_COMPILE_FLAGS}")
+else()
+	# create dynamic libraries
+	set(COLLADA_COMPILE_FLAGS "${COLLADA_COMPILE_FLAGS} -DDOM_DYNAMIC -DDOM_EXPORT")
+endif()
 
 add_definitions(-DBOOST_ALL_NO_LIB)
 
