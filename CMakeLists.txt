@@ -105,13 +105,6 @@ file(GLOB stderrplugin_files ${CMAKE_CURRENT_SOURCE_DIR}/src/modules/stdErrPlugi
 set(COLLADA_BASE_SOURCES ${dae_files} ${libxmlplugin_files} ${stddatabase_files} ${stderrplugin_files})
 set(COLLADA_COMPILE_FLAGS "${EXTRA_COMPILE_FLAGS}")
 
-if(CC_GLOBAL_FORCE_STATIC)
-	set(COLLADA_COMPILE_FLAGS "${COLLADA_COMPILE_FLAGS}")
-else()
-	# create dynamic libraries
-	set(COLLADA_COMPILE_FLAGS "${COLLADA_COMPILE_FLAGS} -DDOM_DYNAMIC -DDOM_EXPORT")
-endif()
-
 add_definitions(-DBOOST_ALL_NO_LIB)
 
 if( OPT_COLLADA15 )
@@ -126,16 +119,14 @@ endif()
 set(INCS ${CMAKE_CURRENT_SOURCE_DIR}/include)
 set(LIBS ${COLLADA_LIBS})
 set(DEFS DOM_INCLUDE_LIBXML PCRE_STATIC Z_PREFIX LIBXML_STATIC)
-__add_real_target(collada-dom dll SOURCE ${COLLADA_BASE_SOURCES}
-								  INC ${INCS}
-								  LIB ${LIBS}
-								  DEF ${DEFS}
-								  INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/include/ ${CMAKE_CURRENT_SOURCE_DIR}/include/1.4/
-								  )
-								  
-set_target_properties(collada-dom PROPERTIES
-  COMPILE_FLAGS "${COLLADA_COMPILE_FLAGS}"
-  LINK_FLAGS "${libpcrecpp_LDFLAGS_OTHERS}")
+set(INTERFACES ${CMAKE_CURRENT_SOURCE_DIR}/include/ ${CMAKE_CURRENT_SOURCE_DIR}/include/1.4/)
+set(SRCS ${COLLADA_BASE_SOURCES})
+__add_common_library(colladadom)
+			
+if(CC_GLOBAL_FORCE_STATIC OR COLLADA-DOM_STATIC)
+else()
+	target_compile_definitions(colladadom141 PRIVATE COLLADADOM_DLL)
+endif()
   
 if(CC_INSTALL_COLLADADOM)
 	__install_directory_specif(${CMAKE_CURRENT_SOURCE_DIR}/include/ collada-dom)

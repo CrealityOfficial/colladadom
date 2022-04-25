@@ -28,14 +28,20 @@
 #define PLATFORM_FLOAT32 float
 #define PLATFORM_FLOAT64 double
 
-#include "ccglobal/export.h"
-
-#ifdef DOM_DYNAMIC
-#define DLLSPEC CC_DECLARE_EXPORT
-#else
-#define DLLSPEC CC_DECLARE_IMPORT
 #endif
 
+#include "ccglobal/export.h"
+
+#if USE_COLLADADOM_DLL
+	#define DLLSPEC CC_DECLARE_IMPORT
+#elif USE_COLLADADOM_STATIC
+	#define DLLSPEC CC_DECLARE_STATIC
+#else
+	#if COLLADADOM_DLL
+		#define DLLSPEC CC_DECLARE_EXPORT
+	#else
+		#define DLLSPEC CC_DECLARE_STATIC
+	#endif
 #endif
 
 #endif

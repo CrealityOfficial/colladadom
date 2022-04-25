@@ -24,29 +24,6 @@
 typedef int intptr_t;
 #endif
 
-#include "ccglobal/export.h"
-
-#ifdef DOM_DYNAMIC
-#define DLLSPEC CC_DECLARE_EXPORT
-#else
-#define DLLSPEC CC_DECLARE_IMPORT
-#endif
-//#ifdef DOM_DYNAMIC
-//
-//#ifdef DOM_EXPORT
-//#define DLLSPEC __declspec( dllexport )
-//#else
-//#define DLLSPEC __declspec( dllimport )
-//#endif
-//
-//#else
-//#ifdef DOM_EXPORT
-//#define CC_DECLARE_EXPORT __attribute__((visibility("default")))
-//#else
-//#define CC_DECLARE_IMPORT
-//#endif
-//#endif
-
 // GCC doesn't understand "#pragma warning"
 #ifdef _MSC_VER
 // class 'std::auto_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'daeErrorHandler'
