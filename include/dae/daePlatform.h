@@ -28,7 +28,14 @@
 #define PLATFORM_FLOAT32 float
 #define PLATFORM_FLOAT64 double
 
-#define DLLSPEC
+#include "ccglobal/export.h"
+
+#ifdef DOM_DYNAMIC
+#define DLLSPEC CC_DECLARE_EXPORT
+#else
+#define DLLSPEC CC_DECLARE_IMPORT
+#endif
+
 #endif
 
 #endif
