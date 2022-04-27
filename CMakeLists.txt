@@ -97,10 +97,41 @@ __assert_target(LibXml2)
 set(COLLADA_LIBS zlib minizip boost_file_system pcrecpp_local LibXml2)
 set(COLLADA_CORE_LIBS boost_file_system)
 
-file(GLOB dae_files ${CMAKE_CURRENT_SOURCE_DIR}/src/dae/*.cpp)
-file(GLOB libxmlplugin_files ${CMAKE_CURRENT_SOURCE_DIR}/src/modules/LIBXMLPlugin/*.cpp)
-file(GLOB stddatabase_files ${CMAKE_CURRENT_SOURCE_DIR}/src/modules/STLDatabase/*.cpp)
-file(GLOB stderrplugin_files ${CMAKE_CURRENT_SOURCE_DIR}/src/modules/stdErrPlugin/*.cpp)
+set(dae_files src/dae/dae.cpp
+			  src/dae/daeArray.cpp
+			  src/dae/daeAtomicType.cpp
+			  src/dae/daeDatabase.cpp
+			  src/dae/daeDocument.cpp
+			  src/dae/daeDom.cpp
+			  src/dae/daeElement.cpp
+			  src/dae/daeError.cpp
+			  src/dae/daeErrorHandler.cpp
+			  src/dae/daeIDRef.cpp
+			  src/dae/daeIOPluginCommon.cpp
+			  src/dae/daeMemorySystem.cpp
+			  src/dae/daeMetaAny.cpp
+			  src/dae/daeMetaAttribute.cpp
+			  src/dae/daeMetaChoice.cpp
+			  src/dae/daeMetaCMPolicy.cpp
+			  src/dae/daeMetaElement.cpp
+			  src/dae/daeMetaElementAttribute.cpp
+			  src/dae/daeMetaGroup.cpp
+			  src/dae/daeMetaSequence.cpp
+			  src/dae/daeRawResolver.cpp
+			  src/dae/daeRefCountedObj.cpp
+			  src/dae/daeSIDResolver.cpp
+			  src/dae/daeStandardURIResolver.cpp
+			  src/dae/daeStringRef.cpp
+			  src/dae/daeStringTable.cpp
+			  src/dae/daeTinyXMLPlugin.cpp
+			  src/dae/daeURI.cpp
+			  src/dae/daeUtils.cpp
+			  src/dae/daeZAEUncompressHandler.cpp
+			  )
+			  
+set(libxmlplugin_files src/modules/LIBXMLPlugin/daeLIBXMLPlugin.cpp)
+set(stddatabase_files src/modules/STLDatabase/daeSTLDatabase.cpp)
+set(stderrplugin_files src/modules/stdErrPlugin/stdErrPlugin.cpp)
 
 set(COLLADA_BASE_SOURCES ${dae_files} ${libxmlplugin_files} ${stddatabase_files} ${stderrplugin_files})
 set(COLLADA_COMPILE_FLAGS "${EXTRA_COMPILE_FLAGS}")
