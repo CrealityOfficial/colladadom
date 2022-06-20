@@ -160,6 +160,6 @@ else()
 endif()
   
 if(CC_INSTALL_COLLADADOM)
-	__install_directory_specif(${CMAKE_CURRENT_SOURCE_DIR}/include/ collada-dom)
-	__install_directory_specif(${CMAKE_CURRENT_SOURCE_DIR}/include/1.4/ collada-dom)
+	__install_directory_specif(${CMAKE_CURRENT_SOURCE_DIR}/include/ colladadom)
+	__install_directory_specif(${CMAKE_CURRENT_SOURCE_DIR}/include/1.4/ colladadom)
 endif()
