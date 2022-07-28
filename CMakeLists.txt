@@ -91,6 +91,8 @@ endif()
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
+__CC_find(Minizip)
+__CC_find(LibXml2)
 __assert_target(minizip)
 __assert_target(LibXml2)
 
