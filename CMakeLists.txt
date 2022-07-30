@@ -95,6 +95,7 @@ __cc_find(Zlib)
 __cc_find(Minizip)
 __cc_find(LibXml2)
 __cc_find(Boost)
+__cc_find(pcre)
 __assert_target(minizip)
 __assert_target(LibXml2)
 
