@@ -99,7 +99,7 @@ __cc_find(pcre)
 __assert_target(minizip)
 __assert_target(LibXml2)
 
-set(COLLADA_LIBS zlib minizip boost_file_system pcrecpp_local LibXml2)
+set(COLLADA_LIBS zlib minizip boost_file_system pcrecpp_local pcre_local LibXml2)
 set(COLLADA_CORE_LIBS boost_file_system)
 
 set(dae_files src/dae/dae.cpp
