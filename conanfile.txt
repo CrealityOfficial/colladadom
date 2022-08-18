@@ -1,0 +1,8 @@
+[requires]
+zlib/0.0.2
+minizip/0.0.2
+libxml/0.0.2
+boost/0.0.2
+pcre/0.0.2
+
+
