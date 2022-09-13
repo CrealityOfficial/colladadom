@@ -99,8 +99,8 @@ __cc_find(pcre)
 __assert_target(minizip)
 __assert_target(LibXml2)
 
-set(COLLADA_LIBS zlib minizip boost_file_system pcrecpp_local pcre_local LibXml2)
-set(COLLADA_CORE_LIBS boost_file_system)
+set(COLLADA_LIBS zlib minizip boost_filesystem pcrecpp_local pcre_local LibXml2)
+set(COLLADA_CORE_LIBS boost_filesystem)
 
 set(dae_files src/dae/dae.cpp
 			  src/dae/daeArray.cpp
@@ -153,7 +153,7 @@ if( OPT_COLLADA14 )
 endif()
 
 set(INCS ${CMAKE_CURRENT_SOURCE_DIR}/include)
-set(LIBS ${COLLADA_LIBS})
+set(LIBS ${COLLADA_LIBS} ${COLLADA_CORE_LIBS})
 set(DEFS DOM_INCLUDE_LIBXML PCRE_STATIC Z_PREFIX LIBXML_STATIC COLLADA_DOM_SUPPORT141)
 set(INTERFACES ${CMAKE_CURRENT_SOURCE_DIR}/include/ ${CMAKE_CURRENT_SOURCE_DIR}/include/1.4/)
 set(SRCS ${COLLADA_BASE_SOURCES})
