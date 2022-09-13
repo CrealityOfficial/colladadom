@@ -60,7 +60,7 @@ if( OPT_COMPILE_RT )
   message(WARNING "compiling collada rt currently not supported")
 endif()
 
-set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake-modules")
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake-modules")
 
 if( CMAKE_COMPILER_IS_GNUCC OR CMAKE_COMPILER_IS_GNUCXX )
   add_definitions("-fno-strict-aliasing -Wall")
@@ -91,10 +91,15 @@ endif()
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
+__cc_find(Zlib)
+__cc_find(Minizip)
+__cc_find(LibXml2)
+__cc_find(Boost)
+__cc_find(pcre)
 __assert_target(minizip)
 __assert_target(LibXml2)
 
-set(COLLADA_LIBS zlib minizip boost_file_system pcrecpp_local LibXml2)
+set(COLLADA_LIBS zlib minizip boost_file_system pcrecpp_local pcre_local LibXml2)
 set(COLLADA_CORE_LIBS boost_file_system)
 
 set(dae_files src/dae/dae.cpp
