@@ -159,7 +159,7 @@ static string tmpDir = string(getenv("TMPDIR"));
 #elif defined __CELLOS_LV2__
 #error tmp dir for your system unknown
 #else
-#error tmp dir for your system unknown
+	static string tmpDir = "/tmp/";
 #endif
     return tmpDir;
 }
@@ -178,7 +178,7 @@ string cdom::getRandomFileName() {
 #elif defined __CELLOS_LV2__
 #error  usage of tmpnam() for your system unknown
 #else
-#error  usage of tmpnam() for your system unknown
+	randomSegment = tmp.substr(tmp.find_last_of('/')+1);
 #endif
     return randomSegment;
 }
