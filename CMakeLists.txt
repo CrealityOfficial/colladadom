@@ -158,6 +158,13 @@ if(CC_GLOBAL_FORCE_STATIC OR COLLADA-DOM_STATIC)
 else()
 	target_compile_definitions(colladadom141 PRIVATE COLLADADOM_DLL)
 endif()
+
+if(CC_INSTALL_COLLADADOM)
+	INSTALL(TARGETS colladadom
+					LIBRARY DESTINATION lib
+					ARCHIVE DESTINATION .
+					RUNTIME DESTINATION bin)	
+endif()
   
 if(CC_INSTALL_COLLADADOM)
 	__install_directory_specif(${CMAKE_CURRENT_SOURCE_DIR}/include/ colladadom)
