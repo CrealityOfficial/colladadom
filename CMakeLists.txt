@@ -98,15 +98,15 @@ __assert_target(pcrecpp_local)
 __cc_find(boost_header)
 __assert_target(boost_header)
 
-__cc_find(zlib)
-__cc_find(Minizip)
-__cc_find(LibXml2)
-__cc_find(Boost)
-__assert_target(minizip)
-__assert_target(LibXml2)
+__cc_find(minizip_static)
+__assert_target(minizip_static)
 
-set(COLLADA_LIBS zlib minizip boost_header pcrecpp_local pcre_local LibXml2)
-set(COLLADA_CORE_LIBS)
+__cc_find(libxml_static)
+__assert_target(libxml_static)
+
+set(COLLADA_LIBS zlib_static minizip_static
+	pcrecpp_local pcre_local libxml_static boost_header)
+set(COLLADA_CORE_LIBS boost_header)
 
 set(dae_files src/dae/dae.cpp
 			  src/dae/daeArray.cpp
@@ -159,18 +159,18 @@ if( OPT_COLLADA14 )
 endif()
 
 set(INCS ${CMAKE_CURRENT_SOURCE_DIR}/include)
-set(LIBS ${COLLADA_LIBS} ${COLLADA_CORE_LIBS})
-set(DEFS DOM_INCLUDE_LIBXML PCRE_STATIC Z_PREFIX LIBXML_STATIC COLLADA_DOM_SUPPORT141)
+set(ILIBS ${COLLADA_LIBS} ${COLLADA_CORE_LIBS})
+set(DEFS DOM_INCLUDE_LIBXML PCRE_STATIC COLLADA_DOM_SUPPORT141)
 set(INTERFACES ${CMAKE_CURRENT_SOURCE_DIR}/include/ ${CMAKE_CURRENT_SOURCE_DIR}/include/1.4/)
 set(SRCS ${COLLADA_BASE_SOURCES})
-__add_common_library(colladadom)
-			
-if(CC_GLOBAL_FORCE_STATIC OR COLLADA-DOM_STATIC)
-else()
-	target_compile_definitions(colladadom141 PRIVATE COLLADADOM_DLL)
-endif()
+__add_real_target(colladadom_static lib SOURCE ${SRCS}
+								 ILIB ${ILIBS}
+								 DEF ${DEFS}
+								 INC ${INCS}
+								 INTERFACE ${INTERFACES}
+								 )
   
-if(CC_INSTALL_COLLADADOM)
-	__install_directory_specif(${CMAKE_CURRENT_SOURCE_DIR}/include/ colladadom)
-	__install_directory_specif(${CMAKE_CURRENT_SOURCE_DIR}/include/1.4/ colladadom)
+if(CC_INSTALL_COLLADADOM_STATIC)
+	__install_directory_specif(${CMAKE_CURRENT_SOURCE_DIR}/include/ colladadom_static)
+	__install_directory_specif(${CMAKE_CURRENT_SOURCE_DIR}/include/1.4/ colladadom_static)
 endif()
