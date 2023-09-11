@@ -91,16 +91,22 @@ endif()
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
-__cc_find(Zlib)
+__cc_find(pcre)
+__assert_target(pcre_local)
+__assert_target(pcrecpp_local)
+
+__cc_find(boost_header)
+__assert_target(boost_header)
+
+__cc_find(zlib)
 __cc_find(Minizip)
 __cc_find(LibXml2)
 __cc_find(Boost)
-__cc_find(pcre)
 __assert_target(minizip)
 __assert_target(LibXml2)
 
-set(COLLADA_LIBS zlib minizip boost_filesystem pcrecpp_local pcre_local LibXml2)
-set(COLLADA_CORE_LIBS boost_filesystem)
+set(COLLADA_LIBS zlib minizip boost_header pcrecpp_local pcre_local LibXml2)
+set(COLLADA_CORE_LIBS)
 
 set(dae_files src/dae/dae.cpp
 			  src/dae/daeArray.cpp
