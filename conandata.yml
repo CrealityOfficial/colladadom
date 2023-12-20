@@ -1,0 +1,9 @@
+license: GLP
+author: zenggui,anoob@sina.cn
+url: xxxxxx
+repository: http://172.20.180.12:8050/yanfa4/thirdparty/colladaDom
+external_repository: https://github.com/CrealityOfficial/colladaDom
+description: colladaDom
+topics: colladaDom
+build_deps: minizip_static/1.0.0,boost_static/1.0.0,pcre/0.0.2,libxml_static/1.0.0
+search_deps: zlib_static/1.0.0,boost_static/1.0.0,pcre/0.0.2,libxml_static/1.0.0
